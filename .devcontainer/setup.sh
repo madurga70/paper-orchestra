@@ -8,9 +8,11 @@ python3 -m venv .venv
 .venv/bin/python -m pip install --disable-pip-version-check --upgrade pip
 .venv/bin/python -m pip install --disable-pip-version-check -r requirements.txt
 
-echo "==> Instalando herramientas para generar PDF (LaTeX/BibTeX)..."
+echo "==> Instalando bibliotecas OpenCV y herramientas para PDF (LaTeX/BibTeX)..."
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    libgl1 \
+    libglib2.0-0 \
     texlive-latex-base \
     texlive-latex-recommended \
     texlive-latex-extra \
