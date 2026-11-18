@@ -4,7 +4,7 @@ json_repair
 matplotlib
 numpy
 openai
-opencv-python
+opencv-python-headless
 pydantic
 PyMuPDF
 pymupdf4llm
