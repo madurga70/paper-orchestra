@@ -43,15 +43,21 @@ La configuración del proyecto también recomienda esta clave cuando se crea un 
 - Si se interrumpió la instalación, utiliza el comando de VS Code **Codespaces: Rebuild Container**.
 
 
-### Error `ImportError: libGL.so.1`
+### Error al importar `cv2` (OpenCV)
 
-En un Codespace existente que se instaló antes de la corrección de las dependencias, abre **Terminal** y ejecuta:
+Si el Codespace se creó antes de sustituir `opencv-python` por `opencv-python-headless`, no es necesario actualizar paquetes de Linux. En **Terminal**, ejecuta:
 
 ```bash
-sudo apt-get update && sudo apt-get install -y libgl1 libglib2.0-0
+.venv/bin/python -m pip uninstall -y opencv-python
+.venv/bin/python -m pip install --no-cache-dir opencv-python-headless
+.venv/bin/python -c "import cv2; print('OpenCV OK:', cv2.__version__)"
 ```
 
-Después, actualiza la pestaña de PaperOrchestra. Los nuevos Codespaces ya instalan estas bibliotecas automáticamente y utilizan `opencv-python-headless`.
+Si aparece `OpenCV OK`, vuelve a cargar la aplicación en el navegador. Si sigue fallando, envía el mensaje completo que aparezca después de `ImportError` o `ModuleNotFoundError`.
+
+### Error `NO_PUBKEY ...` al ejecutar `apt-get update`
+
+Este error indica que una fuente de terceros, como Yarn, carece de una clave GPG válida; no está relacionado con Gemini. En un entorno ya creado, la reparación de OpenCV anterior evita necesitar `apt-get update`. Para nuevos Codespaces, el script de instalación intenta actualizar desde las fuentes oficiales de Debian si falla la actualización global, sin desactivar la verificación de firmas.
 
 ## Consideraciones
 
