@@ -1,0 +1,27 @@
+{
+  "name": "PaperOrchestra: aplicación web de investigación",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bookworm",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/start.sh",
+  "forwardPorts": [
+    8501
+  ],
+  "portsAttributes": {
+    "8501": {
+      "label": "PaperOrchestra (interfaz web)",
+      "onAutoForward": "openBrowserOnce"
+    }
+  },
+  "secrets": {
+    "GEMINI_API_KEY": {
+      "description": "Clave personal de Google AI Studio para ejecutar los agentes Gemini. No la guardes en el repositorio."
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": ".venv/bin/python"
+      }
+    }
+  }
+}
