@@ -42,6 +42,17 @@ La configuración del proyecto también recomienda esta clave cuando se crea un 
 - Si no se abre el puerto 8501, consulta **Terminal** y ejecuta `bash .devcontainer/start.sh`. Para ver errores, ejecuta `tail -n 100 /tmp/paper-orchestra-streamlit.log`.
 - Si se interrumpió la instalación, utiliza el comando de VS Code **Codespaces: Rebuild Container**.
 
+
+### Error `ImportError: libGL.so.1`
+
+En un Codespace existente que se instaló antes de la corrección de las dependencias, abre **Terminal** y ejecuta:
+
+```bash
+sudo apt-get update && sudo apt-get install -y libgl1 libglib2.0-0
+```
+
+Después, actualiza la pestaña de PaperOrchestra. Los nuevos Codespaces ya instalan estas bibliotecas automáticamente y utilizan `opencv-python-headless`.
+
 ## Consideraciones
 
 - GitHub puede aplicar cuotas o costes de Codespaces, independientemente del coste de los modelos de IA.
